@@ -1,9 +1,30 @@
-import React from 'react';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import AboutUsPage from "./Pages/AboutUsPage";
+import ContactsPage from "./Pages/ContactsPage";
 
 function Task1() {
   return (
     <div>
       <h3>Task 1</h3>
+
+      <Router>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/about-us">About us</Link>
+            </li>
+            <li>
+              <Link to="/contacts">Contacts</Link>
+            </li>
+          </ul>
+        </nav>
+        <Switch>
+          {/* <Route exact path="/" component={Task1} /> */}
+          <Route path="/about-us" component={AboutUsPage} />
+          <Route path="/contacts" component={ContactsPage} />
+        </Switch>
+      </Router>
     </div>
   );
 }

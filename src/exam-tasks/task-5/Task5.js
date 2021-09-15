@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useRef } from "react";
 
 function Task5() {
+  const ref = useRef();
   return (
-    <div>
+    <div ref={ref}>
       <h3>Task 5</h3>
+
+      <h1>Some big text</h1>
+      <p> Some small text</p>
+      <button
+        onClick={() => {
+          ref.current.style.background = "#f1f1f1";
+          ref.current.style.color = "#000000";
+        }}
+      >
+        Light theme
+      </button>
+      <button
+        onClick={() => {
+          ref.current.style.background = "#000000";
+          ref.current.style.color = "#f1f1f1";
+        }}
+      >
+        Dark theme
+      </button>
     </div>
   );
 }

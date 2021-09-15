@@ -1,14 +1,18 @@
-import React from 'react';
-import CompA from './CompA';
-import CompB from './CompB';
+import React, { createContext, useState } from "react";
+import CompA from "./CompA";
+import CompB from "./CompB";
 
+export const PassingState = createContext();
 function Task6() {
+  const [state, setState] = useState(0);
   return (
-    <div>
+    <PassingState.Provider value={{ state, setState }}>
       <h3>Task 6</h3>
-      {/*<CompA />*/}
-      {/*<CompB />*/}
-    </div>
+      <p>State: {state}</p>
+      {state >= 100 && <p>Didinti nebegalima</p>}
+      <CompA />
+      <CompB />
+    </PassingState.Provider>
   );
 }
 
