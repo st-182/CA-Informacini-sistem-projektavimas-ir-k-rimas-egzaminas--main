@@ -38,7 +38,7 @@ function Task4() {
           <p>Company</p>
         </div>
         {userData.map((user) => (
-          <div>
+          <div key={user.id}>
             <p>{user.name}</p>
             <p>{user.email}</p>
             <p>
