@@ -3,8 +3,8 @@ import "font-awesome/css/font-awesome.min.css";
 
 const likesFromFetch = { like: 5, dislike: 3 }; //simulating fetch response
 const initialState = {
-  like: likesFromFetch.likes,
-  dislike: likesFromFetch.dislikes,
+  like: likesFromFetch.like,
+  dislike: likesFromFetch.dislike,
   voted: undefined,
 };
 const reducer = (state, action) => {
@@ -17,10 +17,18 @@ const reducer = (state, action) => {
       return { ...state, dislike: state.dislike + 1, voted: true };
     case "CHANGETOLIKE":
       //simulates post request to server
-      return { like: state.like + 1, dislike: likesFromFetch.dislike };
+      return {
+        ...state,
+        like: likesFromFetch.like + 1,
+        dislike: likesFromFetch.dislike,
+      };
     case "CHANGETODISLIKE":
       //simulates post request to server
-      return { like: likesFromFetch.like, dislike: state.dislike + 1 };
+      return {
+        ...state,
+        like: likesFromFetch.like,
+        dislike: likesFromFetch.dislike + 1,
+      };
     default:
       return state;
   }
@@ -30,9 +38,9 @@ function Task2() {
   const handleClick = (action) => {
     if (state.voted) {
       if (action === "Like") {
-        dispatch({ type: "CHANGETODISLIKE" });
-      } else {
         dispatch({ type: "CHANGETOLIKE" });
+      } else {
+        dispatch({ type: "CHANGETODISLIKE" });
       }
     } else {
       if (action === "Like") {
@@ -45,7 +53,6 @@ function Task2() {
   return (
     <div>
       <h3>Task 2</h3>
-      <p>{state.voted}</p>
       <button onClick={() => handleClick("Like")}>
         <i className="fa fa-thumbs-up"></i>
         {state.like}
